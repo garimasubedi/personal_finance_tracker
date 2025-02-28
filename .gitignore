@@ -3,9 +3,7 @@
 # dependencies
 .env
 /backend/.venv
-/frontend/node_modules
-/frontend/.pnp
-/frontend/.pnp.js
+
 
 /node_modules
 /.pnp
@@ -15,7 +13,7 @@
 /coverage
 
 # production
-/build
+
 
 # misc
 .DS_Store
@@ -34,3 +32,4 @@ yarn-error.log*
 *.swp
 *.swo
 *.pyc
+__pycache__/
