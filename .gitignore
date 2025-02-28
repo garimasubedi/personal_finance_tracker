@@ -5,8 +5,8 @@
 /backend/.venv
 
 
-/node_modules
-/.pnp
+node_modules
+.pnp
 .pnp.js
 
 # testing
