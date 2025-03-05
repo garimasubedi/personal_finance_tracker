@@ -16,14 +16,7 @@ DATABASE_URL = URL.create(
     port=int(os.getenv("DB_PORT")),
     database=os.getenv("DB_NAME"),
 )
-# DATABASE_URL = URL.create(
-#     drivername="mysql+pymysql",  # Or use "mysql+pymysql" if using PyMySQL
-#     username="finance_user",
-#     password="db_user",
-#     host="127.0.0.1",  # <-- Change from "localhost" to "vetspro-db"
-#     port=3306,  # Add port explicitly
-#     database="finance_db",
-# )
+
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
