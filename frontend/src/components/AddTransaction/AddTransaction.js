@@ -33,6 +33,8 @@ const AddTransaction = ({ editTransactionData, onFormSubmit }) => {
       category,
       amount: parseFloat(amount),
       description,
+      date: new Date().toISOString(),
+      id : editTransactionData ? editTransactionData.id : 0  // Add id to the transaction object if it is an edit operation
     };
 
     try {

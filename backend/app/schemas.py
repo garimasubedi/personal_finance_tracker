@@ -7,6 +7,7 @@ class TransactionBase(BaseModel):
     category: str
     amount: float
     description: str | None = None
+    date: datetime
 
 # Create schema
 class TransactionCreate(TransactionBase):

@@ -7,9 +7,9 @@ CREATE TABLE users (
 CREATE TABLE transactions (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
+    type VARCHAR(100) NOT NULL,
     amount DECIMAL(10,2) NOT NULL,
     category VARCHAR(100),
     description TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

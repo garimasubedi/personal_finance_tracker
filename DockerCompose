@@ -18,6 +18,8 @@ services:
       interval: 5s
       timeout: 10s
       retries: 10
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql  
 
   finance_backend:
     image: garimasubedi/finance_backend:v1
@@ -36,7 +38,7 @@ services:
       - my-network
 
   finance_frontend:
-    image: garimasubedi/finance_frontend:v1
+    image: garimasubedi/finance_frontend:v2
     ports:
       - "3000:3000"    
     networks:
