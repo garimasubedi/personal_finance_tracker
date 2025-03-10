@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from sqlalchemy import func
 from app.models import Transaction
 from app.schemas import TransactionCreate, TransactionUpdate
 
@@ -37,3 +38,29 @@ def delete_transaction(db: Session, transaction_id: int):
         db.commit()
         return True
     return False
+
+def get_total_balance(db: Session):    
+    total_income = db.query(func.sum(Transaction.amount)).filter(Transaction.type == 'income').scalar()
+    total_expense = db.query(func.sum(Transaction.amount)).filter(Transaction.type == 'expense').scalar()
+    
+    # If no transactions exist, func.sum will return None
+    if total_income is None:
+        total_income = 0
+    if total_expense is None:
+        total_expense = 0
+    
+    total_balance = total_income - total_expense
+    return total_balance
+
+def get_total_expenses(db: Session):    
+    total_expense = db.query(func.sum(Transaction.amount)).filter(Transaction.type == 'expense').scalar()
+    
+    # If no expenses exist, func.sum will return None
+    if total_expense is None:
+        total_expense = 0
+    
+    return total_expense
+
+# Get recent transactions
+def get_recent_transactions(db: Session):
+    return db.query(Transaction).order_by(Transaction.date.desc()).limit(3).all()

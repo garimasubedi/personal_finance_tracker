@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-toastify"; 
 import {
   Button,
   Card,
@@ -43,10 +44,10 @@ const AddTransaction = ({ editTransactionData, onFormSubmit }) => {
           `http://127.0.0.1:8000/transactions/${editTransactionData.id}/`,
           transaction
         );
-        alert("Transaction updated successfully!");
+        toast.success("Transaction updated successfully!");
       } else {
-        await axios.post("http://127.0.0.1:8000/transactions/", transaction);
-        alert("Transaction added successfully!");
+        await axios.post("http://127.0.0.1:8000/transactions/", transaction);        
+        toast.success("Transaction added successfully!");
       }
       // Reset the form
       setType("expense");
@@ -56,7 +57,7 @@ const AddTransaction = ({ editTransactionData, onFormSubmit }) => {
       onFormSubmit();
     } catch (error) {
       console.error("Error saving transaction:", error);
-      alert("Error saving transaction");
+      toast.error("Error saving transaction");
     }
   };
 
